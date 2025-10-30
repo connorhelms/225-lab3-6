@@ -24,12 +24,11 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+       stage('Build Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://registry-1.docker.io', 'roseaw-dockerhub') {
-                        docker.build("${DOCKER_IMAGE}:${IMAGE_TAG}", "-f Dockerfile.build .")
-                    }
+                    docker.withRegistry('https://registry.hub.docker.com', 'roseaw-dockerhub') {
+                        docker.build("${DOCKER_IMAGE}:${IMAGE_TAG}")
                 }
             }
         }
